@@ -1,1 +1,71 @@
-<p>login works!</p>
+<div class="login-container">
+
+  <div class="login-card">
+
+    <h1>Entrar</h1>
+
+    <p class="subtitle">
+      Entre na sua conta para continuar.
+    </p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+      <mat-form-field appearance="outline">
+        <mat-label>E-mail</mat-label>
+
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          placeholder="seu@email.com"
+        />
+
+        @if (loginForm.controls.email.hasError('required')) {
+          <mat-error>
+            O e-mail é obrigatório.
+          </mat-error>
+        }
+
+        @if (loginForm.controls.email.hasError('email')) {
+          <mat-error>
+            Informe um e-mail válido.
+          </mat-error>
+        }
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Senha</mat-label>
+
+        <input
+          matInput
+          type="password"
+          formControlName="password"
+        />
+
+        @if (loginForm.controls.password.hasError('required')) {
+          <mat-error>
+            A senha é obrigatória.
+          </mat-error>
+        }
+
+      </mat-form-field>
+
+      <button
+        mat-flat-button
+        type="submit"
+        [disabled]="loginForm.invalid"
+      >
+        Entrar
+      </button>
+
+    </form>
+
+    <p class="register-link">
+      Ainda não possui uma conta?
+      <a routerLink="/register">Cadastre-se</a>
+    </p>
+
+  </div>
+
+</div>
