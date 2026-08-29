@@ -1,1 +1,49 @@
-<h1>REGISTRO FUNCIONANDO</h1>
+<div class="register-container">
+  <div class="register-card">
+    <h1>Registrar</h1>
+
+    <p class="subtitle">Register uma conta para continuar.</p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+
+        <input matInput type="text" formControlName="name" placeholder="Seu Nome" />
+
+        @if (registerForm.controls.name.hasError('required')) {
+          <mat-error> O nome é obrigatório</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>E-mail</mat-label>
+
+        <input matInput type="email" formControlName="email" placeholder="seu@email.com" />
+
+        @if (registerForm.controls.email.hasError('required')) {
+          <mat-error> O e-mail é obrigatório. </mat-error>
+        }
+
+        @if (registerForm.controls.email.hasError('email')) {
+          <mat-error> Informe um e-mail válido. </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Senha</mat-label>
+
+        <input matInput type="password" formControlName="password" />
+
+        @if (registerForm.controls.password.hasError('required')) {
+          <mat-error> A senha é obrigatória. </mat-error>
+        }
+      </mat-form-field>
+
+      <button mat-flat-button type="submit" [disabled]="registerForm.invalid">Entrar</button>
+    </form>
+
+    <p class="register-link">
+      Já possui uma conta? Faça login
+      <a routerLink="/register">Cadastre-se</a>
+    </p>
+  </div>
+</div>
