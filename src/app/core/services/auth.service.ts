@@ -14,7 +14,6 @@ export interface RegisterRequest {
 }
 
 export interface AuthResponse {
-  name: string;
   token: string;
 }
 
@@ -45,5 +44,9 @@ export class AuthService {
           this.auth.set(response);
           }),
       );
+  }
+
+  getAuth(): AuthResponse | null {
+    return this.auth();
   }
 }
