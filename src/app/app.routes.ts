@@ -14,6 +14,12 @@ export const routes: Routes = [
         .then(m => m.Register),
   },
   {
+    path: 'allCategories',
+    loadComponent: () =>
+      import('./features/category/categories/categories')
+        .then(m => m.Categories),
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',

@@ -15,9 +15,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
-import { RouterLink } from '@angular/router';
-
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
+
 
 @Component({
   selector: 'app-login',
@@ -36,6 +36,7 @@ import { AuthService } from '../../../core/services/auth.service';
 export class Login {
 
   private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
   private readonly fb = inject(NonNullableFormBuilder);
 
   readonly loginForm = this.fb.group({
@@ -62,6 +63,7 @@ export class Login {
         this.isLoading.set(false);
 
         console.log('Login realizado com sucesso:', response);
+        this.router.navigate(['/allCategories']);
       },
 
       error: (error) => {
