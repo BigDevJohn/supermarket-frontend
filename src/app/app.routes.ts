@@ -14,7 +14,7 @@ export const routes: Routes = [
         .then(m => m.Register),
   },
   {
-    path: 'allCategories',
+    path: 'categories',
     loadComponent: () =>
       import('./features/category/categories/categories')
         .then(m => m.Categories),

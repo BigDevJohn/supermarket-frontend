@@ -63,7 +63,7 @@ export class Login {
         this.isLoading.set(false);
 
         console.log('Login realizado com sucesso:', response);
-        this.router.navigate(['/allCategories']);
+        this.router.navigate(['/categories']);
       },
 
       error: (error) => {

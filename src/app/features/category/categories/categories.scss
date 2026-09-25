@@ -1,0 +1,56 @@
+.categories-container {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  .header-section {
+    margin-bottom: 1.5rem;
+
+    h1 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.75rem;
+      font-weight: 500;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--mat-sys-on-surface-variant, rgba(0, 0, 0, 0.6));
+    }
+  }
+
+  .table-card {
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--mat-sys-surface, #fff);
+
+    .categories-table {
+      width: 100%;
+
+      th.mat-header-cell {
+        font-weight: 600;
+        color: var(--mat-sys-on-surface);
+        background-color: var(--mat-sys-surface-container, #f8f9fa);
+      }
+
+      .actions-header {
+        text-align: right;
+        padding-right: 16px;
+      }
+
+      .actions-cell {
+        text-align: right;
+        padding-right: 16px;
+
+        button {
+          margin-left: 4px;
+        }
+      }
+
+      .no-data-cell {
+        text-align: center;
+        padding: 2rem;
+        color: var(--mat-sys-on-surface-variant);
+      }
+    }
+  }
+}
