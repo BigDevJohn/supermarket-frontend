@@ -1,0 +1,58 @@
+<mat-toolbar color="primary" class="navbar mat-elevation-z4">
+  <div class="navbar-container">
+    <!-- Brand / Logo -->
+    <a routerLink="/" class="brand" title="Supermarket">
+      <mat-icon class="brand-icon">shopping_cart</mat-icon>
+      <span class="brand-name">Supermarket</span>
+    </a>
+
+    <!-- Navigation links for larger screens -->
+    <nav class="nav-links">
+      <a mat-button routerLink="/categories" routerLinkActive="active-nav-link">
+        <mat-icon>category</mat-icon>
+        <span>Categorias</span>
+      </a>
+    </nav>
+
+    <!-- Spacer -->
+    <span class="spacer"></span>
+
+    <!-- Actions / Auth buttons -->
+    <div class="nav-actions">
+      <a mat-button routerLink="/login" routerLinkActive="active-nav-link">
+        <mat-icon>login</mat-icon>
+        <span>Entrar</span>
+      </a>
+      <a mat-flat-button class="register-btn" routerLink="/register" routerLinkActive="active-nav-link">
+        <mat-icon>person_add</mat-icon>
+        <span>Cadastrar</span>
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button
+      mat-icon-button
+      class="mobile-menu-btn"
+      [matMenuTriggerFor]="mobileMenu"
+      aria-label="Abrir menu de navegação"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <!-- Mobile Dropdown Menu -->
+    <mat-menu #mobileMenu="matMenu">
+      <a mat-menu-item routerLink="/categories">
+        <mat-icon>category</mat-icon>
+        <span>Categorias</span>
+      </a>
+      <a mat-menu-item routerLink="/login">
+        <mat-icon>login</mat-icon>
+        <span>Entrar</span>
+      </a>
+      <a mat-menu-item routerLink="/register">
+        <mat-icon>person_add</mat-icon>
+        <span>Cadastrar</span>
+      </a>
+    </mat-menu>
+  </div>
+</mat-toolbar>
