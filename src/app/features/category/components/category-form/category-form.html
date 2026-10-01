@@ -1,1 +1,82 @@
-<p>category-form works!</p>
+<div class="category-form-container">
+  <div class="navigation-bar">
+    <a mat-button routerLink="/categories" class="back-link">
+      <mat-icon>arrow_back</mat-icon>
+      <span>Voltar para Categorias</span>
+    </a>
+  </div>
+
+  <mat-card class="form-card mat-elevation-z2">
+    <mat-card-header class="card-header">
+      <div mat-card-avatar class="header-icon-avatar">
+        <mat-icon>{{ isEditMode() ? 'edit' : 'category' }}</mat-icon>
+      </div>
+      <mat-card-title class="card-title">
+        {{ isEditMode() ? 'Editar Categoria' : 'Nova Categoria' }}
+      </mat-card-title>
+      <mat-card-subtitle class="card-subtitle">
+        {{
+          isEditMode()
+            ? 'Atualize os dados da categoria selecionada'
+            : 'Preencha as informações para cadastrar uma nova categoria'
+        }}
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content class="card-content">
+      @if (errorMessage()) {
+        <div class="error-banner">
+          <mat-icon>error_outline</mat-icon>
+          <span>{{ errorMessage() }}</span>
+        </div>
+      }
+
+      <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()" id="categoryForm">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nome da Categoria</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="name"
+            placeholder="Ex: Frutas, Laticínios, Bebidas..."
+            autocomplete="off"
+          />
+          <mat-icon matPrefix class="field-icon">label</mat-icon>
+
+          @if (categoryForm.controls.name.hasError('required')) {
+            <mat-error>O nome da categoria é obrigatório.</mat-error>
+          }
+          @if (categoryForm.controls.name.hasError('minlength')) {
+            <mat-error>O nome deve ter no mínimo 2 caracteres.</mat-error>
+          }
+          @if (categoryForm.controls.name.hasError('maxlength')) {
+            <mat-error>O nome deve ter no máximo 50 caracteres.</mat-error>
+          }
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions class="card-actions" align="end">
+      <button
+        mat-button
+        type="button"
+        (click)="onCancel()"
+        [disabled]="isLoading()"
+      >
+        Cancelar
+      </button>
+
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        form="categoryForm"
+        [disabled]="categoryForm.invalid || isLoading()"
+        class="submit-btn"
+      >
+        <mat-icon>{{ isEditMode() ? 'check' : 'add' }}</mat-icon>
+        <span>{{ isLoading() ? 'Salvando...' : (isEditMode() ? 'Atualizar Categoria' : 'Salvar Categoria') }}</span>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -20,6 +20,18 @@ export const routes: Routes = [
         .then(m => m.Categories),
   },
   {
+    path: 'categories/new',
+    loadComponent: () =>
+      import('./features/category/components/category-form/category-form')
+        .then(m => m.CategoryForm),
+  },
+  {
+    path: 'categories/edit/:id',
+    loadComponent: () =>
+      import('./features/category/components/category-form/category-form')
+        .then(m => m.CategoryForm),
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',

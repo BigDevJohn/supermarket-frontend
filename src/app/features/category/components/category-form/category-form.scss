@@ -1,0 +1,103 @@
+.category-form-container {
+  padding: 2rem 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+
+  .navigation-bar {
+    margin-bottom: 1.25rem;
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--mat-sys-on-surface-variant);
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: var(--mat-sys-primary);
+      }
+    }
+  }
+
+  .form-card {
+    border-radius: 16px;
+    padding: 1.5rem 1rem;
+    background-color: var(--mat-sys-surface, #fff);
+    border: 1px solid var(--mat-sys-outline-variant, #e0e0e0);
+
+    .card-header {
+      margin-bottom: 1.5rem;
+
+      .header-icon-avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--mat-sys-primary-container, #e3f2fd);
+        color: var(--mat-sys-primary, #1976d2);
+        border-radius: 12px;
+        width: 44px;
+        height: 44px;
+      }
+
+      .card-title {
+        font-size: 1.35rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+
+      .card-subtitle {
+        color: var(--mat-sys-on-surface-variant, rgba(0, 0, 0, 0.6));
+        font-size: 0.9rem;
+      }
+    }
+
+    .card-content {
+      padding-top: 0.5rem;
+
+      .error-banner {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+        margin-bottom: 1.25rem;
+        border-radius: 8px;
+        background-color: var(--mat-sys-error-container, #ffebee);
+        color: var(--mat-sys-on-error-container, #c62828);
+        font-size: 0.875rem;
+
+        mat-icon {
+          font-size: 20px;
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      .full-width {
+        width: 100%;
+      }
+
+      .field-icon {
+        margin-right: 8px;
+        color: var(--mat-sys-on-surface-variant);
+      }
+    }
+
+    .card-actions {
+      padding-top: 1rem;
+      display: flex;
+      gap: 0.75rem;
+
+      .submit-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0 1.25rem;
+        border-radius: 8px;
+
+        .button-spinner {
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+}
