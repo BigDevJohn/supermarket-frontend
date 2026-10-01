@@ -79,4 +79,21 @@ export class Categories implements OnInit {
     this.searchTerm.set('');
     this.loadCategories();
   }
+
+  createCategory(): void {
+
+  }
+
+  deleteCategory(categoryId: number): void {
+    this.categoryService.delete(categoryId).subscribe({
+      next: () => {
+        // Atualiza a lista de categorias após a exclusão
+        this.loadCategories();
+      },
+      error: (error) => {
+        console.error('Erro ao excluir categoria:', error);
+        this.errorMessage.set('Não foi possível excluir a categoria. Tente novamente mais tarde.');
+      },
+    });
+  }
 }
