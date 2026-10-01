@@ -19,14 +19,11 @@
 
     <!-- Actions / Auth buttons -->
     <div class="nav-actions">
-      <a mat-button routerLink="/login" routerLinkActive="active-nav-link">
-        <mat-icon>login</mat-icon>
-        <span>Entrar</span>
+      <a mat-button (click)="logout()" routerLinkActive="active-nav-link">
+        <mat-icon>logout</mat-icon>
+        <span>Sair</span>
       </a>
-      <a mat-flat-button class="register-btn" routerLink="/register" routerLinkActive="active-nav-link">
-        <mat-icon>person_add</mat-icon>
-        <span>Cadastrar</span>
-      </a>
+      
     </div>
 
     <!-- Mobile Menu Button -->
