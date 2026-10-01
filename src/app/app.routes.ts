@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -14,22 +15,28 @@ export const routes: Routes = [
         .then(m => m.Register),
   },
   {
-    path: 'categories',
-    loadComponent: () =>
-      import('./features/category/components/categories/categories')
-        .then(m => m.Categories),
-  },
-  {
-    path: 'categories/new',
-    loadComponent: () =>
-      import('./features/category/components/category-form/category-form')
-        .then(m => m.CategoryForm),
-  },
-  {
-    path: 'categories/edit/:id',
-    loadComponent: () =>
-      import('./features/category/components/category-form/category-form')
-        .then(m => m.CategoryForm),
+    path: '',
+    canActivate: [authGuard],
+    children: [
+      {
+        path: 'categories',
+        loadComponent: () =>
+          import('./features/category/components/categories/categories')
+            .then(m => m.Categories),
+      },
+      {
+        path: 'categories/new',
+        loadComponent: () =>
+          import('./features/category/components/category-form/category-form')
+            .then(m => m.CategoryForm),
+      },
+      {
+        path: 'categories/edit/:id',
+        loadComponent: () =>
+          import('./features/category/components/category-form/category-form')
+            .then(m => m.CategoryForm),
+      },
+    ],
   },
   {
     path: '',

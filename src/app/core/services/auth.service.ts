@@ -30,7 +30,7 @@ export class AuthService {
       .post<AuthResponse>(`${this.apiUrl}/login`, credentials)
       .pipe(
         tap((response) => {
-          localStorage.setItem('auth', JSON.stringify(response.token));
+          localStorage.setItem('auth', JSON.stringify(response));
         }),
       );
   }
@@ -40,14 +40,14 @@ export class AuthService {
       .post<AuthResponse>(`${this.apiUrl}/register`, credentials)
       .pipe(
         tap((response) => {
-          localStorage.setItem('auth', JSON.stringify(response.token));
+          localStorage.setItem('auth', JSON.stringify(response));
         }),
       );
   }
 
   logout(): void {
     localStorage.removeItem('auth');
-    
+
   }
 
   getAuth(): AuthResponse | null {
