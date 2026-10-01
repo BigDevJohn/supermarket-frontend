@@ -9,6 +9,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -16,6 +17,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink } from '@angular/router';
+import { ConfirmDialog } from '../../../../core/components/confirm-dialog/confirm-dialog';
 import { Category, CategoryService } from '../../category.service';
 
 @Component({
@@ -39,6 +41,7 @@ import { Category, CategoryService } from '../../category.service';
 })
 export class Categories implements OnInit {
   private readonly categoryService = inject(CategoryService);
+  private readonly dialog = inject(MatDialog);
 
   readonly categories = signal<Category[]>([]);
   readonly searchTerm = signal<string>('');
@@ -85,15 +88,24 @@ export class Categories implements OnInit {
   }
 
   deleteCategory(categoryId: number): void {
-    this.categoryService.delete(categoryId).subscribe({
-      next: () => {
-        // Atualiza a lista de categorias após a exclusão
-        this.loadCategories();
-      },
-      error: (error) => {
-        console.error('Erro ao excluir categoria:', error);
-        this.errorMessage.set('Não foi possível excluir a categoria. Tente novamente mais tarde.');
-      },
+    const dialogRef = this.dialog.open(ConfirmDialog, {
+      width: '350px',
+      data: { message: 'Tem certeza que deseja excluir esta categoria?', confirmText: 'Excluir' },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.categoryService.delete(categoryId).subscribe({
+          next: () => {
+            // Atualiza a lista de categorias após a exclusão
+            this.loadCategories();
+          },
+          error: (error) => {
+            console.error('Erro ao excluir categoria:', error);
+            this.errorMessage.set('Não foi possível excluir a categoria. Tente novamente mais tarde.');
+          },
+        });
+      }
     });
   }
 }
